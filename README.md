@@ -80,9 +80,9 @@ After the start (`main.run()` call):
 
  **Note 1:** In this section the classes are referred as:
 
- * `Worker` - `base_app.multiprocess.worker.Worker` class
+ * `Worker` - `multipro_lab.worker.Worker` class
  * `UserWorker` - The developer's worker class which inherits from the
-   `base_app.multiprocess.worker.Worker` class.
+   `multipro_lab.worker.Worker` class.
 
  **Note 2:**
 
