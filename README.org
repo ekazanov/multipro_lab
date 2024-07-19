@@ -1,0 +1,3 @@
+:OPTIONS:
+#+STARTUP: overview
+:END:
