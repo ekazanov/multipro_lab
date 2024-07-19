@@ -7,25 +7,24 @@ Author: Evgeny Kazanov
 
 # Introduction #
 
-The multipro_lab is a simple library/framework.
+multipro_lab is a simple library/framework that can be useful for
+creating Python multiprocessing applications. Such applications have
+the following advantages:
 
-
-It can be useful to create the Python multiprocessing applications. The
-such applications have the following advantages:
-
- * The good multiprocessing application is much more reliable.
+ * A well-designed multiprocessing application is much more reliable.
  * It reduces application complexity.
  * It solves the famous GIL problem.
- * It allows using few frameworks with event loops in the separate processes.
+ * It allows using few frameworks with event loops in the separate
+   processes.
 
 # Features #
 
 The multipro_lab module allows developing following architectures:
 
- * The main process and the number of the different workers.  Main
+ * The main process and the number of the different workers.  The main
       process and workers can send messages to each other.
  * The main process and the number of the identical workers.  The
-      workers take tasks from the task queue and work on tasks.
+      workers take tasks from the task queue and work on them.
 
 # Internals #
 
@@ -33,7 +32,7 @@ The multipro_lab module allows developing following architectures:
 
 ### Messages ###
 
-Message includes three fields:
+A message includes three fields:
 
   * Receiver address (txt) - the name of receiving object.
   * Message type (txt) - the type of the message handler in receiver.
@@ -45,9 +44,9 @@ The aplication consists of the main process and worker processes. All
 processes have an input queue. Every process can send a message to the
 any other process.
 
-The main process catches either a SIGINT or a SIGTERM signal and
-send exit message to all processes. After receiving an exit message,
-the worker process exits. After all worker processes exited, the main
+The main process catches either a SIGINT or a SIGTERM signal and send
+exit message to all processes. After receiving an exit message, the
+worker process exits. After all worker processes have exited, the main
 process exits too.
 
 ### Main process and few workers with task queue ###
@@ -58,7 +57,7 @@ any other process.
 
 The main process (or the dedicated worker) send tasks to the task
 queue. The worker processes take tasks from the task queue and work on
-it.
+them.
 
 ## Main process life cycle ##
 
@@ -82,12 +81,12 @@ After the start (`main.run()` call):
  **Note 1:** In this section the classes are referred as:
 
  * `Worker` - `base_app.multiprocess.worker.Worker` class
- * `UserWorker` - The developer's worker class which inherits from
-   the `base_app.multiprocess.worker.Worker` class.
+ * `UserWorker` - The developer's worker class which inherits from the
+   `base_app.multiprocess.worker.Worker` class.
 
  **Note 2:**
 
- * Every `Worker` object starts a corresponded worker process.
+ * Every `Worker` object starts a corresponding worker process.
 
  **Life cycle:**
 
@@ -98,10 +97,9 @@ After the start (`main.run()` call):
    1. Call UserWorker.worker_action():
        * (Optional) If the application is designed as a *task queue
           application* get task from task queue (See
-          004_example_task_queue.py). Do task.
-       * If the application is
-          not designed as a *task queue application* the background
-          worker work happens here.
+          004_example_task_queue.py). Do the task.
+       * If the application is not designed as a *task queue
+          application* the background worker work happens here.
    2. Get messages and call message handlers.
    3. Check Worker._exit_flag
    4. return - exit from the worker process.
@@ -191,7 +189,7 @@ Message objects are sent to the corresponded object like this:
 
 A MessageRouter find the addressed object using a
 `MessageRouter.message_route_d` dictionary. The object receives
-message it's input queue. The object finds the message handler using
+message in it's input queue. The object finds the message handler using
 `message_type` message field and call the message handler.
 
 #### Exit messages ####
@@ -200,7 +198,7 @@ Exit messages are sent to all workers.
 
 ### Message handlers ###
 
-For the every message type (apart the exit message) which can be sent
+For the every message type (apart from the exit message) which can be sent
 to a worker a developer should develop a message handler. A message
 handler is a UserWorker class method. A message body is passed to a
 message handler as a `message_body` named argument.
