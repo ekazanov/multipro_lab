@@ -1,0 +1,33 @@
+-*- mode: change-log -*-
+
+2024-07-19  Evgeny Kazanov  <evgeny.kazanov@gmail.com>
+
+	* v0.3.0
+	- Project name is changed to multipro_lab
+	- Change the project strucure
+
+2019-10-12  Evgeny Kazanov  <evgeny.kazanov@gmail.com>
+
+	* v0.2.0
+	- Python2/3 compatibility
+
+
+2019-09-08  Evgeny Kazanov  <evgeny.kazanov@gmail.com>
+
+	* v0.1.0
+	Features:
+	- class Main.
+		- Register workers.
+		- Run _main_loop().
+		- Run main_actions().
+		- Send "exit" messages to workers.
+		- Exit either by SIGINT or by SIGTERM signal.
+	- class Worker.
+		- Run _main_loop().
+			- Run worker_actions().
+			- Run get_messages().
+			- Exit by "exit" message.
+	- class MessageReceiver.
+		- Registre message handlers.
+		- Receive messages from MessageReceiver.in_q queue.
+		- Call message handlers.
